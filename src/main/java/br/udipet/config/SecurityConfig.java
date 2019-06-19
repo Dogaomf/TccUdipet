@@ -21,7 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers("/", "/usuario/**", "/css/**", "/js/**", "/upload/**", "/fonts/**", "/img/**", "/h2/**")
+				.antMatchers("/", "/usuario/**", "/css/**", "/js/**", "/upload/**", "/fonts/**", "/img/**", "/h2/**", "/open-iconic/**")
 				.permitAll().anyRequest().authenticated().antMatchers("/**").authenticated().and().formLogin()
 				.loginPage("/").defaultSuccessUrl("/plano", true).permitAll().and().logout().invalidateHttpSession(true)
 				.clearAuthentication(true).logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
