@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/main">
+<head>
+    <meta charset="UTF-8"/>
+    <title>UdiPet - Formulário Marcação</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-sm-12">
+            <form th:action="@{/marcacao/salvar}" th:object="${marcacao}" method="post">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="form-group">
+                    <label for="inputUsuario">Usuário</label>
+                    <select class="form-control" id="inputUsuario" th:field="*{usuario}">
+                        <option value="">Selecione o Usuário</option>
+                        <option th:each="usuario : ${usuarios}" th:value="${usuario.id}" th:text="${usuario.nome}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputPlano">Plano</label>
+                    <select class="form-control" id="inputPlano" th:field="*{plano}">
+                        <option value="">Selecione o Plano</option>
+                        <option th:each="plano : ${planos}" th:value="${plano.id}" th:text="${plano.nome}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputProcedimento">Procedimento</label>
+                    <select class="form-control" id="inputProcedimento" th:field="*{procedimento}">
+                        <option value="">Selecione o Procedimento</option>
+                        <option th:each="procedimento : ${procedimentos}" th:value="${procedimento.id}" th:text="${procedimento.nome}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputClinica">Clínica</label>
+                    <select class="form-control" id="inputClinica" th:field="*{clinica}">
+                    	<option value="">Selecione a Clínica</option>
+                        <option th:each="clinica : ${clinicas}" th:value="${clinica.id}" th:text="${clinica.nome}"></option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputData">Data</label>
+                    <input type="date" class="form-control" id="inputData" th:field="*{data}"/>
+                    <span  th:if="${#fields.hasErrors('data')}" th:errors="*{data}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputHorario">Horário</label>
+                    <input type="datetime" class="form-control" id="inputHorario" th:field="*{hora}"/>
+                    <span  th:if="${#fields.hasErrors('hora')}" th:errors="*{hora}" class="badge badge-danger" >erro</span>
+                </div>
+                <a th:href="@{/marcacao}" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

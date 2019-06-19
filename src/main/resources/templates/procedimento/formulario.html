@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/main">
+<head>
+    <meta charset="UTF-8"/>
+    <title>UdiPet - Formulario de Procedimento</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-sm-12">
+            <form th:action="@{/procedimento/salvar}" th:object="${procedimento}" method="post" enctype="multipart/form-data">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="form-group">
+                    <label for="inputNome">Nome</label>
+                    <input type="text" class="form-control" id="inputNome" th:field="*{nome}"/>
+                    <span  th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group">
+                    <label for="inputCodproc">Codigo do procedimento</label>
+                    <input type="text" class="form-control" id="inputCodproc" th:field="*{codproc}"/>
+                    <span  th:if="${#fields.hasErrors('codproc')}" th:errors="*{codproc}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group">
+                    <label for="inputTipo">Tipo do procedimento</label>
+                    <input type="text" class="form-control" id="inputTipo" th:field="*{tipo}"/>
+                    <span  th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group">
+                    <label for="inputDescproc">Descrição do procedimento</label>
+                    <input type="text" class="form-control" id="inputDescProc" th:field="*{descproc}"/>
+                    <span  th:if="${#fields.hasErrors('descproc')}" th:errors="*{descproc}" class="badge badge-danger" >erro</span>
+                </div>
+                <div th:if="${message}">
+						<h2 th:text="${message}"></h2>
+				</div>
+                <table>
+					<tr>
+						<td>Carregue a imagem do procedimento:</td>
+						<td><input type="file" name="file"/></td>
+					</tr>
+					<tr>
+						<td></td>
+					</tr>
+				</table>
+				<div>
+				<ul>
+					<li th:if="${procedimento.path}">
+							<img th:src="@{/procedimento/imagens(path=${procedimento.path})}"/>
+					</li>
+				</ul>
+				</div>
+                
+                <a th:href="@{/procedimento}" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary" value="Upload">Salvar</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

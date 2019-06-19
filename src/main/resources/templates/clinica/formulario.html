@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/main">
+<head>
+    <meta charset="UTF-8"/>
+    <title>UdiPet - Cadastro de Clínica</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-sm-12">
+            <form th:action="@{/clinica/salvar}" th:object="${clinica}" method="post">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="form-group col-md-6">
+                    <label for="inputNome">Nome</label>
+                    <input type="text" class="form-control" id="inputNome" th:field="*{nome}"/>
+                    <span  th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="badge badge-danger" >erro</span>
+                </div>                
+                <div class="form-group col-md-6">
+                    <label for="inputCnpj">CNPJ</label>
+                    <input type="text" class="form-control" id="inputCnpj" th:field="*{cnpj}"/>
+                    <span  th:if="${#fields.hasErrors('cnpj')}" th:errors="*{cnpj}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputTel">Telefone</label>
+                    <input type="text" class="form-control" id="inputTel" th:field="*{telefone}"/>
+                    <span  th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputEnd">Endereço</label>
+                    <input type="text" class="form-control" id="inputEnd" th:field="*{endereco}"/>
+                    <span  th:if="${#fields.hasErrors('endereco')}" th:errors="*{endereco}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputBairro">Bairro</label>
+                    <input type="text" class="form-control" id="inputBairro" th:field="*{bairro}"/>
+                    <span  th:if="${#fields.hasErrors('bairro')}" th:errors="*{bairro}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputCidade">Cidade</label>
+                    <input type="text" class="form-control" id="inputCidade" th:field="*{cidade}"/>
+                    <span  th:if="${#fields.hasErrors('cidade')}" th:errors="*{cidade}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputUf">UF</label>
+                    <input type="text" class="form-control" id="inputUf" th:field="*{uf}"/>
+                    <span  th:if="${#fields.hasErrors('uf')}" th:errors="*{uf}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputCep">CEP</label>
+                    <input type="text" class="form-control" id="inputCep" th:field="*{cep}"/>
+                    <span  th:if="${#fields.hasErrors('cep')}" th:errors="*{cep}" class="badge badge-danger" >erro</span>
+                </div>
+                <a th:href="@{/clinica}" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

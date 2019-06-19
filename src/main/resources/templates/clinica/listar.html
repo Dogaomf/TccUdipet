@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/main">
+<head>
+    <meta charset="UTF-8"/>
+    <title>UdiPet - Listar Clínicas Cadastradas</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>CNPJ</th>
+                    <th>Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="clinica, iter: ${clinicas}">
+                    <th scope="row" th:text="${clinica.id}">1</th>
+                    <td th:text="${clinica.nome}"></td>
+                    <td th:text="${clinica.cnpj}"></td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Ações">
+                            <a th:href="@{/clinica/editar(id=${clinica.id})}" class="btn btn-info btn-sm">Editar</a>
+                            <a th:href="@{/clinica/excluir(id=${clinica.id})}" class="btn btn-danger btn-sm">Excluir</a>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <a th:href="@{/clinica/novo}" class="btn btn-primary">Novo</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

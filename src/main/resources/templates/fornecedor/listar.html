@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/main">
+<head>
+    <meta charset="UTF-8"/>
+    <title>UdiPet - Listar Fornecedores cadastrados</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-sm-12">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Sexo</th>
+                <th>CNPJ</th>
+                <th>Area</th>
+                <th>Especialidade</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="fornecedor : ${fornecedores}">
+                <th scope="row" th:text="${fornecedor.id}"></th>
+                <td th:text="${fornecedor.nome}"></td>
+                <td th:text="${fornecedor.sexo}"></td>
+                <td th:text="${fornecedor.cnpj}"></td>
+                <td th:text="${fornecedor.area}"></td>
+                <td th:text="${fornecedor.especialidade}"></td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Ações">
+                        <a th:href="@{/fornecedor/editar(id=${fornecedor.id})}" class="btn btn-info btn-sm">Editar</a>
+                        <a th:href="@{/fornecedor/excluir(id=${fornecedor.id})}" class="btn btn-danger btn-sm">Excluir</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+<!--             <nav aria-label="Page navigation example"> -->
+<!--                 <ul class="pagination"> -->
+<!--                     <li class="page-item" th:classappend="${!fornecedores.hasPrevious()}? 'disabled'"> -->
+<!--                         <a class="page-link" th:href="@{/fornecedor(page=${fornecedores.getNumber()-1},size=${fornecedores.getSize()})}">Anterior</a> -->
+<!--                     </li> -->
+<!--                     <li class="page-item" th:classappend="${i == fornecedores.getNumber()}? 'active'" -->
+<!--                         th:each="i : ${#numbers.sequence( 0, fornecedores.getTotalPages()-1)}"> -->
+<!--                         <a class="page-link" -->
+<!--                            th:href="@{/fornecedor(page=${i},size=${fornecedores.getSize()})}" -->
+<!--                            th:text="${i+1}">1</a> -->
+<!--                     </li> -->
+<!--                     <li class="page-item" th:classappend="${!fornecedores.hasNext()}? 'disabled'"> -->
+<!--                         <a class="page-link" -->
+<!--                            th:href="@{/fornecedor(page=${fornecedores.getNumber()+1},size=${fornecedores.getSize()})}">Proxima</a> -->
+<!--                     </li> -->
+<!--                 </ul> -->
+<!--             </nav> -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-9">
+            <a th:href="@{/fornecedor/novo}" class="btn btn-primary">Novo</a>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

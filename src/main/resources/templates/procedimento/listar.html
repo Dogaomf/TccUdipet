@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/main">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Listar procedimentos</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-sm-2 offset-sm-10">
+            <a th:href="@{/procedimento/relatorio}" title="exportar par PDF" class="btn btn-success "><i class="fa fa-file-pdf-o fa-2x "></i></a>
+            <a th:href="@{/procedimento/relatorio(format=xlsx)}" title="exportar par Excel" class="btn btn-success "><i class="fa fa-file-excel-o fa-2x "></i></a>
+</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Codigo do procedimento</th>
+                <th>Tipo</th>
+                <th>Descrição do procedimento</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="procedimento : ${procedimentos}">
+                <th scope="row" th:text="${procedimento.id}">1</th>
+                <td th:text="${procedimento.nome}"></td>
+                <td th:text="${procedimento.codproc}"></td>
+                <td th:text="${procedimento.tipo}"></td>
+                <td th:text="${procedimento.descproc}"></td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Ações">
+                        <a th:href="@{/procedimento/editar(id=${procedimento.id})}" class="btn btn-info btn-sm">Editar</a>
+                        <a th:href="@{/procedimento/excluir(id=${procedimento.id})}" class="btn btn-danger btn-sm">Excluir</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item" th:classappend="${!procedimentos.hasPrevious()}? 'disabled'">
+                        <a class="page-link" th:href="@{/procedimento(page=${procedimentos.getNumber()-1},size=${procedimentos.getSize()})}">Anterior</a>
+                    </li>
+                    <li class="page-item" th:classappend="${i == procedimentos.getNumber()}? 'active'"
+                        th:each="i : ${#numbers.sequence( 0, procedimentos.getTotalPages())}">
+                        <a class="page-link"
+                           th:href="@{/procedimento(page=${i},size=${procedimentos.getSize()})}"
+                           th:text="${i+1}">1</a>
+                    </li>
+                    <li class="page-item" th:classappend="${!procedimentos.hasNext()}? 'disabled'">
+                        <a class="page-link"
+                           th:href="@{/procedimento(page=${procedimentos.getNumber()+1},size=${procedimentos.getSize()})}">Proxima</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-9">
+            <a th:href="@{/procedimento/novo}" class="btn btn-primary">Novo</a>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

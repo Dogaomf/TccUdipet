@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8"/>
+    <title>UdiPet</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/star-rating.min.css}"/>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <a class="navbar-brand" href="/">UdiPet</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto pure-menu pure-menu-horizontal">
+            <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/plano') ? 'active':''}">
+                <a class="nav-link" th:href="@{/plano}">Planos</a>
+            </li>
+            <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/clinica') ? 'active':''}">
+                <a class="nav-link" th:href="@{/clinica}">Clínicas</a>
+            </li>
+            <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/procedimento') ? 'active':''}">
+                <a class="nav-link" th:href="@{/procedimento}">Procedimentos</a>
+            </li>
+            <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/marcacao') ? 'active':''}">
+                <a class="nav-link" th:href="@{/marcacao}">Marcação</a>
+            </li>
+			<li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+            <a href="#" id="" class="pure-menu-link">Cadastro</a>
+            <ul class="pure-menu-children">
+                <li class="pure-menu-item"><a class="pure-menu-link" th:href="@{/usuario}">Usuário</a></li>
+                <li class="pure-menu-item"><a class="pure-menu-link" th:href="@{/animal}">Animal</a></li>
+                <li class="pure-menu-item"><a class="pure-menu-link" th:href="@{/fornecedor}">Fornecedor</a></li>
+            </ul>
+        	</li>
+		</ul>
+    </div>  
+</nav>
+
+<div class="container">
+    <div layout:fragment="content"></div>
+</div>
+</body>
+</html>
