@@ -4,10 +4,24 @@
       layout:decorator="layout/main">
 <head>
     <meta charset="UTF-8"/>
-    <title>UdiPet - Listar marcações</title>
+    <title>UdiPet - Listar Agendamentos de consultas e procedimentos</title>
 </head>
 <body>
 <div layout:fragment="content">
+	<form th:action="@{/marcacao/buscarStatus}" method="get">
+    <div class="form-group">
+        <select name="tipoStatus" class="form-control" >
+            <option value="Todos">Listar agendamentos</option>
+            <option value="Cancelado">Cancelado</option>
+            <option value="Executado">Executado</option>
+            <option value="Pendente">Pendente</option>
+            <!-- option th:each="marcacao : ${marcacoes}"
+                    th:value="${marcacao.statusExec}"
+                    th:text="${marcacao.statusExec}"/> -->
+        </select>
+    </div>
+    <button class="btn bnt-primary"><span class="oi oi-magnifying-glass" style="color: Blue"> Buscar</span></button>
+</form>
     <div class="row">
         <div class="col-sm-12">
         <table class="table">
@@ -17,9 +31,9 @@
                 <th>Usuário</th>
                 <th>Plano</th>
                 <th>Procedimento</th>
-                <th>Clínica</th>
                 <th>Data</th>
                 <th>Horário</th>
+                <th>Status da Execução</th>
                 <th>Ações</th>
             </tr>
             </thead>
@@ -28,14 +42,14 @@
                 <th scope="row" th:text="${marcacao.id}"></th>
                 <td th:text="${marcacao.usuario.nome}"></td>
                 <td th:text="${marcacao.plano.nome}"></td>
-                <td th:text="${marcacao.clinica.nome}"></td>
                 <td th:text="${marcacao.procedimento.nome}"></td>
                 <td th:text="${marcacao.data}"></td>
                 <td th:text="${marcacao.hora}"></td>
+                <td th:text="${marcacao.statusExec}"></td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Ações">
-                        <a th:href="@{/marcacao/editar(id=${marcacao.id})}" class="btn btn-info btn-sm">Editar</a>
-                        <a th:href="@{/marcacao/delete(id=${marcacao.id})}" class="btn btn-danger btn-sm">Excluir</a>
+                        <a th:href="@{/marcacao/editar(id=${marcacao.id})}" ><span class="oi oi-pencil" style="margin:0 15px" title="Editar"></span></a>   
+                        <a th:href="@{/marcacao/excluir(id=${marcacao.id})}" ><span class="oi oi-trash" style="color:red" title="Excluir"></span></a>
                     </div>
                 </td>
             </tr>
@@ -62,7 +76,7 @@
     </div>
     <div class="row">
         <div class="col-sm-9">
-            <a th:href="@{/marcacao/novo}" class="btn btn-primary">Novo</a>
+             <a th:href="@{/marcacao/novo}" class="btn btn-primary"><span class="btn-large oi oi-file" style="color:white" title="Novo Registro"></span></a>
         </div>
 
     </div>

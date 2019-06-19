@@ -32,8 +32,8 @@
                 <td th:text="${usuario.celular}"></td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Ações">
-                        <a th:href="@{/usuario/editar(id=${usuario.id})}" class="btn btn-info btn-sm">Editar</a>
-                        <a th:href="@{/usuario/excluir(id=${usuario.id})}" class="btn btn-danger btn-sm">Excluir</a>
+                        <a th:href="@{/usuario/editar(id=${usuario.id})}"><span class="oi oi-pencil" style="margin:0 15px" title="Editar"></span></a>
+                        <a th:href="@{/usuario/excluir(id=${usuario.id})}"><span class="oi oi-trash" style="color:red" title="Excluir"></span></a>
                     </div>
                 </td>
             </tr>
@@ -60,7 +60,7 @@
     </div>
     <div class="row">
         <div class="col-sm-9">
-            <a th:href="@{/usuario/novo}" class="btn btn-primary">Novo</a>
+            <a th:href="@{/usuario/novo}" class="btn btn-primary"><span class="btn-large oi oi-file" style="color:white" title="Novo Registro"></span></a>
         </div>
 
     </div>

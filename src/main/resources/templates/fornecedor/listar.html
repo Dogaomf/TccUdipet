@@ -14,7 +14,7 @@
             <thead>
             <tr>
                 <th>Id</th>
-                <th>Nome</th>
+                <th>Nome do veterinario</th>
                 <th>Sexo</th>
                 <th>CNPJ</th>
                 <th>Area</th>
@@ -32,8 +32,8 @@
                 <td th:text="${fornecedor.especialidade}"></td>
                 <td>
                     <div class="btn-group" role="group" aria-label="Ações">
-                        <a th:href="@{/fornecedor/editar(id=${fornecedor.id})}" class="btn btn-info btn-sm">Editar</a>
-                        <a th:href="@{/fornecedor/excluir(id=${fornecedor.id})}" class="btn btn-danger btn-sm">Excluir</a>
+                        <a th:href="@{/fornecedor/editar(id=${fornecedor.id})}"><span class="oi oi-pencil" style="margin:0 15px" title="Editar"></span></a>
+                        <a th:href="@{/fornecedor/excluir(id=${fornecedor.id})}"><span class="oi oi-trash" style="color:red" title="Excluir"></span></a>
                     </div>
                 </td>
             </tr>
@@ -60,7 +60,7 @@
     </div>
     <div class="row">
         <div class="col-sm-9">
-            <a th:href="@{/fornecedor/novo}" class="btn btn-primary">Novo</a>
+            <a th:href="@{/fornecedor/novo}" class="btn btn-primary"><span class="btn-large oi oi-file" style="color:white" title="Novo Registro"></span></a>
         </div>
 
     </div>

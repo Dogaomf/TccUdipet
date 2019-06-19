@@ -13,7 +13,7 @@
             <form th:action="@{/clinica/salvar}" th:object="${clinica}" method="post">
                 <input type="hidden" th:field="*{id}"/>
                 <div class="form-group col-md-6">
-                    <label for="inputNome">Nome</label>
+                    <label for="inputNome">Nome da clinica</label>
                     <input type="text" class="form-control" id="inputNome" th:field="*{nome}"/>
                     <span  th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="badge badge-danger" >erro</span>
                 </div>                
@@ -52,8 +52,8 @@
                     <input type="text" class="form-control" id="inputCep" th:field="*{cep}"/>
                     <span  th:if="${#fields.hasErrors('cep')}" th:errors="*{cep}" class="badge badge-danger" >erro</span>
                 </div>
-                <a th:href="@{/clinica}" class="btn btn-secondary">Cancelar</a>
-                <button type="submit" class="btn btn-primary">Salvar</button>
+                <button type="submit" class="btn btn-primary"><span class="oi oi-circle-check" title="Salvar"></span></button>
+                <a th:href="@{/clinica}" class="btn btn-secondary"><span class="oi oi-circle-x" title="Cancelar"></span></a>
             </form>
         </div>
     </div>

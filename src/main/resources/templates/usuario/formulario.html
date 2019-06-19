@@ -84,8 +84,8 @@
                     <span  th:if="${#fields.hasErrors('conf_senha')}" th:errors="*{conf_senha}" class="badge badge-danger" >erro</span>
                 </div>
                 
-                <a th:href="@{/usuario}" class="btn btn-secondary">Cancelar</a>
-                <button type="submit" class="btn btn-primary">Salvar</button>
+                <button type="submit" class="btn btn-primary"><span class="oi oi-circle-check" title="Salvar"></span></button>
+                <a th:href="@{/usuario}" class="btn btn-secondary"><span class="oi oi-circle-x" title="Cancelar"></span></a>
             </form>
         </div>
     </div>

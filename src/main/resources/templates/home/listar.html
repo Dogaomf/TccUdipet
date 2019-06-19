@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/main">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Listar Home</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-sm-12">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome do plano</th>
+                <th>Descrição</th>
+                <th>Ativo</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="plano, iter: ${planos}">
+                <th scope="row" th:text="${plano.id}">1</th>
+                <td th:text="${plano.nome}"></td>
+                <td th:text="${plano.descricao}"></td>
+                <td th:text="${plano.ativo}"></td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Ações">
+                        <a th:href="@{/plano/editar(id=${plano.id})}" class="btn btn-info btn-sm">Editar</a>
+                        <a th:href="@{/plano/excluir(id=${plano.id})}" class="btn btn-danger btn-sm">Excluir</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <a th:href="@{/plano/novo}" class="btn btn-primary">Novo</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

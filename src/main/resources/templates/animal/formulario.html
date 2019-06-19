@@ -13,14 +13,14 @@
             <form class="row" th:action="@{/animal/salvar}" th:object="${animal}" method="post" enctype="multipart/form-data">
                 <input type="hidden" th:field="*{id}"/>
                 <div class="form-group col-md-4">
-                    <label for="inputNome">Nome</label>
+                    <label for="inputNome">Nome do Animal:</label>
                     <input type="text" class="form-control" id="inputNome" th:field="*{nome}"/>
                     <span  th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="badge badge-danger" >erro</span>
                 </div>
                 <div class="row form-check form-check-inline col-md-6">
                     <label class="radio-inline">Tipo</label><br/>
-					<label class="radio-inline"><input type="radio" th:field="*{tipo}" th:value="C" name="optradio"/>Cão</label>
-					<label class="radio-inline"><input type="radio" th:field="*{tipo}" th:value="G" name="optradio"/>Gato</label>
+					<label class="radio-inline"><input type="radio" th:field="*{tipo}" th:value="Cão" name="optradio"/>Cão</label>
+					<label class="radio-inline"><input type="radio" th:field="*{tipo}" th:value="Gato" name="optradio"/>Gato</label>
 					<span  th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}" class="badge badge-danger" >erro</span>
                 </div>
                 <div class="form-group col-md-6">
@@ -40,8 +40,8 @@
                 </div>
                 <div class="row form-check form-check-inline col-md-6">
                     <label class="radio-inline">Pelagem</label><br/>
-					<label class="radio-inline"><input type="radio" th:field="*{pelagem}" th:value="C" name="optradio"/>Curta</label>
-					<label class="radio-inline"><input type="radio" th:field="*{pelagem}" th:value="L" name="optradio"/>Longa</label>
+					<label class="radio-inline"><input type="radio" th:field="*{pelagem}" th:value="Curta" name="optradio"/>Curta</label>
+					<label class="radio-inline"><input type="radio" th:field="*{pelagem}" th:value="Longa" name="optradio"/>Longa</label>
 					<span  th:if="${#fields.hasErrors('pelagem')}" th:errors="*{pelagem}" class="badge badge-danger" >erro</span>
                 </div>
                 
@@ -50,8 +50,8 @@
 				</div>
                 <table>
 					<tr>
-						<td>Carregue a imagem do animal:</td>
-						<td><input type="file" name="file"/></td>
+						<td>Carregue a imagem do seu pet : </td>
+						<td class="btn btn-primary" style="color:Green"><span class="oi oi-cloud-upload" style="color:white" title="Selecione a foto do seu PET"></span></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -66,8 +66,8 @@
 				</div>
 				
 				<div class="btn-block">
-	                <a th:href="@{/animal}" class="btn btn-secondary">Cancelar</a>
-	                <button type="submit" class="btn btn-primary" value="Upload">Salvar</button>
+	                <button type="submit" class="btn btn-primary" value="Upload"><span class="oi oi-circle-check" title="Salvar"></span></button>
+	                <a th:href="@{/animal}" class="btn btn-secondary"><span class="oi oi-circle-x" title="Cancelar"></span></a>
                 </div>
             </form>
         </div>

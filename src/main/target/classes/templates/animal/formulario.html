@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/main">
+<head>
+    <meta charset="UTF-8"/>
+    <title>UdiPet - Cadastro de Animal</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-sm-12">
+            <form class="row" th:action="@{/animal/salvar}" th:object="${animal}" method="post" enctype="multipart/form-data">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="form-group col-md-4">
+                    <label for="inputNome">Nome</label>
+                    <input type="text" class="form-control" id="inputNome" th:field="*{nome}"/>
+                    <span  th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="row form-check form-check-inline col-md-6">
+                    <label class="radio-inline">Tipo</label><br/>
+					<label class="radio-inline"><input type="radio" th:field="*{tipo}" th:value="C" name="optradio"/>Cão</label>
+					<label class="radio-inline"><input type="radio" th:field="*{tipo}" th:value="G" name="optradio"/>Gato</label>
+					<span  th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPeso">Peso</label>
+                    <input type="text" class="form-control" id="inputPeso" th:field="*{peso}"/>
+                    <span  th:if="${#fields.hasErrors('peso')}" th:errors="*{peso}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputRaca">Raça</label>
+                    <input type="text" class="form-control" id="inputRaca" th:field="*{raca}"/>
+                    <span  th:if="${#fields.hasErrors('raca')}" th:errors="*{raca}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputCor">Cor</label>
+                    <input type="text" class="form-control" id="inputCor" th:field="*{cor}"/>
+                    <span  th:if="${#fields.hasErrors('cor')}" th:errors="*{cor}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="row form-check form-check-inline col-md-6">
+                    <label class="radio-inline">Pelagem</label><br/>
+					<label class="radio-inline"><input type="radio" th:field="*{pelagem}" th:value="C" name="optradio"/>Curta</label>
+					<label class="radio-inline"><input type="radio" th:field="*{pelagem}" th:value="L" name="optradio"/>Longa</label>
+					<span  th:if="${#fields.hasErrors('pelagem')}" th:errors="*{pelagem}" class="badge badge-danger" >erro</span>
+                </div>
+                
+                <div th:if="${message}">
+						<h2 th:text="${message}"></h2>
+				</div>
+                <table>
+					<tr>
+						<td>Carregue a imagem do animal:</td>
+						<td><input type="file" name="file"/></td>
+					</tr>
+					<tr>
+						<td></td>
+					</tr>
+				</table>
+				<div>
+				<ul>
+					<li th:if="${animal.path}">
+							<img th:src="@{/animal/imagens(path=${animal.path})}"/>
+					</li>
+				</ul>
+				</div>
+				
+				<div class="btn-block">
+	                <a th:href="@{/animal}" class="btn btn-secondary">Cancelar</a>
+	                <button type="submit" class="btn btn-primary" value="Upload">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/main">
+<head>
+    <meta charset="UTF-8"/>
+    <title>UdiPet - Cadastro de Fornecedor</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-sm-12">
+            <form class="row" th:action="@{/fornecedor/salvar}" th:object="${fornecedor}" method="post">
+                <input type="hidden" th:field="*{id}"/>
+                <div class="form-group col-md-6">
+                    <label for="inputNome">Nome</label>
+                    <input type="text" class="form-control" id="inputNome" th:field="*{nome}"/>
+                    <span  th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="row form-check form-check-inline col-md-6">
+                    <label class="radio-inline">Sexo</label><br/>
+					<label class="radio-inline"><input type="radio" th:field="*{sexo}" th:value="M" name="optradio"/>Masculino</label>
+					<label class="radio-inline"><input type="radio" th:field="*{sexo}" th:value="F" name="optradio"/>Feminino</label>
+					<span  th:if="${#fields.hasErrors('sexo')}" th:errors="*{sexo}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputCnpj">CNPJ</label>
+                    <input type="text" class="form-control" id="inputCnpj" th:field="*{cnpj}"/>
+                    <span  th:if="${#fields.hasErrors('cnpj')}" th:errors="*{cnpj}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputTelefone">Telefone</label>
+                    <input type="text" class="form-control" id="inputTelefone" th:field="*{telefone}"/>
+                    <span  th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputCelular">Celular</label>
+                    <input type="text" class="form-control" id="inputCelular" th:field="*{celular}"/>
+                    <span  th:if="${#fields.hasErrors('celular')}" th:errors="*{celular}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputArea">Area</label>
+                    <input type="text" class="form-control" id="inputArea" th:field="*{area}"/>
+                    <span  th:if="${#fields.hasErrors('area')}" th:errors="*{area}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputEspecialidade">Especialidade</label>
+                    <input type="text" class="form-control" id="inputEspecialidade" th:field="*{especialidade}"/>
+                    <span  th:if="${#fields.hasErrors('especialidade')}" th:errors="*{especialidade}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputEmail">E-mail</label>
+                    <input type="email" class="form-control" id="inputEmail" th:field="*{email}"/>
+                    <span  th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputUsuario">Usuário</label>
+                    <input type="text" class="form-control" id="inputUsuario" th:field="*{nome_usuario}"/>
+                    <span  th:if="${#fields.hasErrors('nome_usuario')}" th:errors="*{nome_usuario}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputSenha">Senha</label>
+                    <input type="password" class="form-control" id="inputSenha" th:field="*{senha}"/>
+                    <span  th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputConfSenha">Confirmação de Senha</label>
+                    <input type="password" class="form-control" id="inputConfSenha" th:field="*{conf_senha}"/>
+                    <span  th:if="${#fields.hasErrors('conf_senha')}" th:errors="*{conf_senha}" class="badge badge-danger" >erro</span>
+                </div>
+                <div class="form-group col-md-6">
+                <a th:href="@{/fornecedor}" class="btn btn-secondary">Cancelar</a>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -5,10 +5,14 @@
     <meta charset="UTF-8"/>
     <title>UdiPet</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <!--link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/-->
+    <link  th:href="@{/open-iconic/font/css/open-iconic-bootstrap.css}" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/font-awesome.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/star-rating.min.css}"/>
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
@@ -20,6 +24,9 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto pure-menu pure-menu-horizontal">
+        	<!--  <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/home') ? 'active':''}">
+                <a class="nav-link" th:href="@{/home}">Home</a>
+            </li>-->
             <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/plano') ? 'active':''}">
                 <a class="nav-link" th:href="@{/plano}">Planos</a>
             </li>
@@ -30,16 +37,44 @@
                 <a class="nav-link" th:href="@{/procedimento}">Procedimentos</a>
             </li>
             <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/marcacao') ? 'active':''}">
-                <a class="nav-link" th:href="@{/marcacao}">Marcação</a>
+                <a class="nav-link" th:href="@{/marcacao}">Agendamentos</a>
             </li>
-			<li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-            <a href="#" id="" class="pure-menu-link">Cadastro</a>
-            <ul class="pure-menu-children">
-                <li class="pure-menu-item"><a class="pure-menu-link" th:href="@{/usuario}">Usuário</a></li>
-                <li class="pure-menu-item"><a class="pure-menu-link" th:href="@{/animal}">Animal</a></li>
-                <li class="pure-menu-item"><a class="pure-menu-link" th:href="@{/fornecedor}">Fornecedor</a></li>
-            </ul>
-        	</li>
+            <!-- <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/execucao') ? 'active':''}">
+                <a class="nav-link" th:href="@{/marcacao}">Execuções</a>
+            </li>-->
+            <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/usuario') ? 'active':''}">
+                <a class="nav-link" th:href="@{/usuario}">Usuários</a>
+            </li>
+            <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/animal') ? 'active':''}">
+                <a class="nav-link" th:href="@{/animal}">Animal</a>
+            </li>
+            <li class="nav-item" th:classappend="${#httpServletRequest.getRequestURI().startsWith('/fornecedor') ? 'active':''}">
+                <a class="nav-link" th:href="@{/fornecedor}">Veterinario</a>
+            </li>
+            
+        	<li class="nav-item" style="flex:auto">
+	        	<ul class="navbar-nav" style="float:right">
+					<li class="nav-item" sec:authorize="isAnonymous()"
+						th:classappend="${#httpServletRequest.getRequestURI().startsWith('/') ? 'active':''}">
+						<a class="nav-link btn btn-outline-success" th:href="@{/}"
+						role="button" title="Acessar">Acessar&nbsp;&nbsp;<i
+							class="fas fa-sign-in-alt"></i><span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item" sec:authorize="isAuthenticated()"
+						th:classappend="${#httpServletRequest.getRequestURI().startsWith('/') ? 'active':''}">
+						<span class="nav-link" th:href="@{/login}"
+						sec:authentication="name"><span class="sr-only">(current)</span></span>
+					</li>
+					<li class="nav-item" sec:authorize="isAuthenticated()">
+						<form th:action="@{/logout}" method="post" class="navbar-form"
+							th:classappend="${#httpServletRequest.getRequestURI().startsWith('/') ? 'active':''}">
+							<button type="submit" class="btn btn-outline-danger" title="Sair">
+								Sair&nbsp;&nbsp;<i class="fas fa-sign-out-alt"></i>
+							</button>
+						</form>
+					</li>
+				</ul>
+			</li>
 		</ul>
     </div>  
 </nav>

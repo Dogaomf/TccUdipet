@@ -14,7 +14,7 @@
                 <thead>
                 <tr>
                     <th>Id</th>
-                    <th>Nome</th>
+                    <th>Nome da clinica</th>
                     <th>CNPJ</th>
                     <th>Ações</th>
                 </tr>
@@ -26,9 +26,9 @@
                     <td th:text="${clinica.cnpj}"></td>
                     <td>
                         <div class="btn-group" role="group" aria-label="Ações">
-                            <a th:href="@{/clinica/editar(id=${clinica.id})}" class="btn btn-info btn-sm">Editar</a>
-                            <a th:href="@{/clinica/excluir(id=${clinica.id})}" class="btn btn-danger btn-sm">Excluir</a>
-                        </div>
+                            <a th:href="@{/plano/editar(id=${clinica.id})}" ><span class="oi oi-pencil" style="margin:0 15px" title="Editar"></span></a>   
+                       		<a th:href="@{/plano/excluir(id=${clinica.id})}" ><span class="oi oi-trash" style="color:red" title="Excluir"></span></a>
+                    </div>
                     </td>
                 </tr>
                 </tbody>
@@ -36,7 +36,7 @@
     </div>
     <div class="row">
         <div class="col-sm-12">
-            <a th:href="@{/clinica/novo}" class="btn btn-primary">Novo</a>
+              <a th:href="@{/clinica/novo}" class="btn btn-primary"><span class="btn-large oi oi-file" style="color:white" title="Novo Registro"></span></a>
         </div>
     </div>
 </div>

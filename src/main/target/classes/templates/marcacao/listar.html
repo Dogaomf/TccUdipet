@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/main">
+<head>
+    <meta charset="UTF-8"/>
+    <title>UdiPet - Listar marcações</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-sm-12">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Usuário</th>
+                <th>Plano</th>
+                <th>Procedimento</th>
+                <th>Clínica</th>
+                <th>Data</th>
+                <th>Horário</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="marcacao : ${marcacoes}">
+                <th scope="row" th:text="${marcacao.id}"></th>
+                <td th:text="${marcacao.usuario.nome}"></td>
+                <td th:text="${marcacao.plano.nome}"></td>
+                <td th:text="${marcacao.clinica.nome}"></td>
+                <td th:text="${marcacao.procedimento.nome}"></td>
+                <td th:text="${marcacao.data}"></td>
+                <td th:text="${marcacao.hora}"></td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Ações">
+                        <a th:href="@{/marcacao/editar(id=${marcacao.id})}" class="btn btn-info btn-sm">Editar</a>
+                        <a th:href="@{/marcacao/delete(id=${marcacao.id})}" class="btn btn-danger btn-sm">Excluir</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+<!--             <nav aria-label="Page navigation example"> -->
+<!--                 <ul class="pagination"> -->
+<!--                     <li class="page-item" th:classappend="${!marcacoes.hasPrevious()}? 'disabled'"> -->
+<!--                         <a class="page-link" th:href="@{/marcacao(page=${marcacoes.getNumber()-1},size=${marcacoes.getSize()})}">Anterior</a> -->
+<!--                     </li> -->
+<!--                     <li class="page-item" th:classappend="${i == marcacoes.getNumber()}? 'active'" -->
+<!--                         th:each="i : ${#numbers.sequence( 0, marcacoes.getTotalPages())}"> -->
+<!--                         <a class="page-link" -->
+<!--                            th:href="@{/marcacao(page=${i},size=${marcacoes.getSize()})}" -->
+<!--                            th:text="${i+1}">1</a> -->
+<!--                     </li> -->
+<!--                     <li class="page-item" th:classappend="${!marcacoes.hasNext()}? 'disabled'"> -->
+<!--                         <a class="page-link" -->
+<!--                            th:href="@{/marcacao(page=${marcacoes.getNumber()+1},size=${procedimentos.getSize()})}">Proxima</a> -->
+<!--                     </li> -->
+<!--                 </ul> -->
+<!--             </nav> -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-9">
+            <a th:href="@{/marcacao/novo}" class="btn btn-primary">Novo</a>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

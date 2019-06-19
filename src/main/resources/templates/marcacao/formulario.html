@@ -4,7 +4,7 @@
       layout:decorator="layout/main">
 <head>
     <meta charset="UTF-8"/>
-    <title>UdiPet - Formulário Marcação</title>
+    <title>UdiPet - Formulário Marcação de consulta e procedimentos</title>
 </head>
 <body>
 <div layout:fragment="content">
@@ -40,18 +40,28 @@
                         <option th:each="clinica : ${clinicas}" th:value="${clinica.id}" th:text="${clinica.nome}"></option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="inputSatus">Status da Execução</label>
+                    <select class="form-control" id="inputStatus" th:field="*{statusExec}">
+                        <option value="">Selecione o Status</option>
+                        <option th:value="Executado" th:text="Executado"></option>
+                        <option th:value="Pendente" th:text="Pendente"></option>
+                        <option th:value="Cancelado" th:text="Cancelado"></option>
+                    </select>
+                </div>
                 <div class="form-group col-md-4">
                     <label for="inputData">Data</label>
                     <input type="date" class="form-control" id="inputData" th:field="*{data}"/>
                     <span  th:if="${#fields.hasErrors('data')}" th:errors="*{data}" class="badge badge-danger" >erro</span>
                 </div>
+                
                 <div class="form-group col-md-4">
                     <label for="inputHorario">Horário</label>
                     <input type="datetime" class="form-control" id="inputHorario" th:field="*{hora}"/>
                     <span  th:if="${#fields.hasErrors('hora')}" th:errors="*{hora}" class="badge badge-danger" >erro</span>
                 </div>
-                <a th:href="@{/marcacao}" class="btn btn-secondary">Cancelar</a>
-                <button type="submit" class="btn btn-primary">Salvar</button>
+                <button type="submit" class="btn btn-primary"><span class="oi oi-circle-check" title="Salvar"></span></button>
+                <a th:href="@{/marcacao}" class="btn btn-secondary"><span class="oi oi-circle-x" title="Cancelar"></span></a>
             </form>
         </div>
     </div>

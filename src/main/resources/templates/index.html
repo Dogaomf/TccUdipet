@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout/main">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout/main">
 
 <head>
-    <title>UdiPet - Plano de Saúde Animal</title>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous"/>
+<title>UdiPet - Plano de Saúde Animal</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+	integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+	crossorigin="anonymous" />
 </head>
 <body>
-<div layout:fragment="content">
-    <div>
-        <div class="col-sm-12">
-            <h1> Udi Pet </h1>
-        </div>
-        <br/>
-        <div th:if="${param.error}">Invalid username and password.</div>
-		<div th:if="${param.logout}">You have been logged out.</div>
-		<form th:action="@{/}" method="post">
-			<div>
-				<label> User Name : <input type="text" name="username" />
-				</label>
-			</div>
-			<div>
-				<label> Password: <input type="password" name="password" />
-				</label>
-			</div>
-			<div>
-				<input type="submit" value="Sign In" />
-			</div>
-		</form>
-		<p>
-			usuários:senha <br /> admin:321 <br />user:123
-		</p>
-		
-		Usuário logado:
-		<span sec:authentication="name"></span>
-		<form th:action="@{/logout}" method="post">
-			<input type="submit" value="Sign Out" />
-		</form>
-		
-    </div>
-</div>
+	<div layout:fragment="content" style="background-image:url('http://blog.petvirtual.com.br/wp-content/uploads/2015/05/cachorro_doutor-540x300.jpg');background-repeat:no-repeat;background-size:contain">
+		<div class="container col-md-6" id="form-container">
+			<h6 class="text-center">Acessar Sistema UdiPet</h6>
+			<form th:action="@{/}" method="post">
+				<div th:if="${param.error}" class="text-center">
+					<div class="alert alert-danger d-inline-flex">E-mail ou senha
+						inválidos.</div>
+				</div>
+				<div th:if="${param.logout}" class="text-center">
+					<div class="alert alert-info d-inline-flex">Desconectado com
+						sucesso!</div>
+				</div>
+				<div class="form-group" style="display: flex;flex-direction:column;align-items:center">
+					<label for="username">Usuário</label><input type="text"
+						id="username" name="username" class="form-control col-md-4"
+						autofocus="autofocus" placeholder="Usuário" />
+				</div>
+				<div class="form-group" style="display: flex;flex-direction:column;align-items:center">
+					<label for="password">Senha</label><input type="password"
+						id="password" name="password" class="form-control col-md-4"
+						placeholder="Senha" />
+				</div>
+				<div class="form-group" style="display: flex;flex-direction:column;align-items:center">
+					<button type="submit" class="btn btn-outline-primary col-md-4"><span class="oi oi-person">  Logar</span></button>
+				</div>
+				<!--  <div class="form-group" style="display: flex;flex-direction:column;align-items:center">
+					<span>Deslogar? <a class="text-primary" th:href="@{/logout}">Deslogar-se</a></span>
+				</div>-->
+			</form>
+		</div>
+	</div>	
 </body>
 </html>

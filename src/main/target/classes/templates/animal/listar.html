@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/main">
+<head>
+    <meta charset="UTF-8"/>
+    <title>UdiPet - Listar Animais cadastrados</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <div class="col-sm-12">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nome</th>
+                <th>Tipo</th>
+                <th>Peso</th>
+                <th>Raça</th>
+                <th>Cor</th>
+                <th>Pelagem</th>
+                <th>Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="animal : ${animais}">
+                <th scope="row" th:text="${animal.id}"></th>
+                <td th:text="${animal.nome}"></td>
+                <td th:text="${animal.tipo}"></td>
+                <td th:text="${animal.peso}"></td>
+                <td th:text="${animal.raca}"></td>
+                <td th:text="${animal.cor}"></td>
+                <td th:text="${animal.pelagem}"></td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="Ações">
+                        <a th:href="@{/animal/editar(id=${animal.id})}" class="btn btn-info btn-sm">Editar</a>
+                        <a th:href="@{/animal/excluir(id=${animal.id})}" class="btn btn-danger btn-sm">Excluir</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-9">
+            <a th:href="@{/animal/novo}" class="btn btn-primary">Novo</a>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
